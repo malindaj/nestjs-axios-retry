@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/nestjs-axios-retry.git"
+    "url": "https://github.com/malindaj/nestjs-axios-retry.git"
   },
   "keywords": [
     "nestjs",
