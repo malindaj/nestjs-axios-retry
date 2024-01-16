@@ -10,7 +10,7 @@ nestjs-axios-retry is a module for NestJS that adds retry functionality to Axios
   
 **Installation**
 ```bash
-npm install nestjs-axios-retry
+npm install nestjs-axios-retry axios-retry
 ```
 
 **Usage**
