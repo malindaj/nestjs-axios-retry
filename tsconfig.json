@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "target": "ES2021",
+    "declaration": true,
+    "strict": true,
+    "moduleResolution": "node",  // Ensures Node.js-style module resolution
+    "experimentalDecorators": true,  // Enables experimental support for decorators
+    "emitDecoratorMetadata": true,  // Enables emitting metadata for decorators
+    "esModuleInterop": true,  // Allows default imports from modules with no default export
+    "forceConsistentCasingInFileNames": true  // Ensures consistency in case sensitivity across imported modules
+  },
+  "include": ["**/*.ts"],  // Ensures all TypeScript files in the src directory are included
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]  // Excludes node_modules, dist directory, and test files
+}
