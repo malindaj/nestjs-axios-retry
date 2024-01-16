@@ -4,4 +4,6 @@ jest.config.js
 tsconfig.json
 index.ts
 package-lock.json
+*.ts
+!*.d.ts
 ```
