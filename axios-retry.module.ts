@@ -1,7 +1,7 @@
 import { HttpModule, HttpService } from "@nestjs/axios";
 import { Module, DynamicModule, Global } from "@nestjs/common";
 import axios, { AxiosRequestConfig } from "axios";
-import axiosRetry, { IAxiosRetryConfig } from "axios-retry";
+import axiosRetry, { IAxiosRetryConfig, DEFAULT_OPTIONS } from "axios-retry";
 
 interface AxiosRetryOptions {
   axiosConfig?: AxiosRequestConfig;
@@ -20,26 +20,11 @@ export class AxiosRetryModule {
    * @param options - Optional configuration options for the retry behavior.
    * @returns A dynamic module that can be imported in a NestJS application.
    */
-  static forRoot(options: AxiosRetryOptions = {}): DynamicModule {
+  static forRoot(
+    options: AxiosRetryOptions = { axiosRetryConfig: DEFAULT_OPTIONS }
+  ): DynamicModule {
     const axiosInstance = axios.create(options.axiosConfig);
-    axiosRetry(
-      axiosInstance,
-      options.axiosRetryConfig || {
-        retries: 3,
-        retryDelay: axiosRetry.exponentialDelay,
-        shouldResetTimeout: true,
-        retryCondition: (error) => {
-          // Custom retry condition
-          return error?.response?.status === 429;
-        },
-        onRetry(retryCount, error, requestConfig) {
-          // Custom callback on retry
-          console.log(`Retrying request attempt ${retryCount}`);
-          //console.log(error);
-          //console.log(requestConfig);
-        },
-      }
-    );
+    axiosRetry(axiosInstance, options.axiosRetryConfig);
 
     const axiosProvider = {
       provide: HttpService,
