@@ -7,6 +7,10 @@ nestjs-axios-retry is a module for NestJS that adds retry functionality to Axios
 - Configurable retry count, delay, and conditions.
 - Support for exponential backoff.
 - Custom callbacks for retry events.
+
+**Blog Article**
+
+For more details on the motivation behind this module, please refer to the following blog article: [Adding Retry Functionality to NestJS HTTP Requests](https://medium.com/@jarvislk/introducing-nestjs-axios-retry-enhanced-resilience-for-http-requests-in-nestjs-ccf00db15f9d)
   
 **Installation**
 ```bash
@@ -196,6 +200,16 @@ async fetchDataWithOnRetryCallback() {
     return response.data;
   }
 ```
+| Name             | Type          | Default                                           | Description                                                                                                                                                                   |
+| ---------------- | ------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| retries          | `Number`      | `3`                                               | The number of times to retry before failing. 1 = One retry after first failure                                                                                                |
+| retryCondition   | `Function`    | `isNetworkOrIdempotentRequestError`               | A callback to further control if a request should be retried. By default, it retries if it is a network error or a 5xx error on an idempotent request (GET, HEAD, OPTIONS, PUT or DELETE). |
+| shouldResetTimeout | `Boolean`     | false                                             | Defines if the timeout should be reset between retries                                                                                                                       |
+| retryDelay       | `Function`    | `function noDelay() { return 0; }`                | A callback to further control the delay in milliseconds between retried requests. By default there is no delay between retries. Another option is exponentialDelay ([Exponential Backoff](https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff)). The function is passed `retryCount` and `error`. |
+| onRetry          | `Function`    | `function onRetry(retryCount, error, requestConfig) { return; }` | A callback to notify when a retry is about to occur. Useful for tracing and you can any async process for example refresh a token on 401. By default nothing will occur. The function is passed `retryCount`, `error`, and `requestConfig`. |
+
+***Credits***
+This module is based on the work of ([axios-retry](https://www.npmjs.com/package/axios-retry)). Please refer to the axios-retry documentation for more details on the retry configuration options.
 
 ***Contributing***
 Contributions to nestjs-axios-retry are welcome! Please refer to the project's issues and pull request sections for more details.
