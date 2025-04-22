@@ -6,6 +6,7 @@
     "lib": ["es2021", "esnext"],
     "types": ["node"],
     "declaration": true,
+    "declarationMap": true,
     "strict": true,
     "moduleResolution": "node",  // Ensures Node.js-style module resolution
     "experimentalDecorators": true,  // Enables experimental support for decorators

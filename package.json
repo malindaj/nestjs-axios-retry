@@ -3,10 +3,10 @@
   "version": "1.0.7",
   "description": "A NestJS module that provides Axios with configurable retry functionality, leveraging axios-retry for enhanced HTTP request resilience.",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
+    "build": "tsc && cp index.d.ts dist/",
     "prepublishOnly": "npm run build"
   },
   "repository": {
