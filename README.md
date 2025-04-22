@@ -1,3 +1,9 @@
+# NestJS Axios Retry
+
+A NestJS module that provides Axios with configurable retry functionality, leveraging axios-retry for enhanced HTTP request resilience.
+
+Compatible with NestJS 11.
+
 **NestJS Axios Retry Module**
 
 nestjs-axios-retry is a module for NestJS that adds retry functionality to Axios HTTP requests. It leverages axios-retry to provide configurable options for retrying failed HTTP requests, making your NestJS applications more resilient to transient errors.
